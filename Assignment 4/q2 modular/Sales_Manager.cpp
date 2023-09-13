@@ -14,7 +14,7 @@ Sales_Manager::Sales_Manager(int id, float sal, float bonus, float comm){
 
 void Sales_Manager:: display(){
     cout << "---------------------------" << endl;
-    cout << " <<< Overriding display method of Employee (superbase class), Manager(base) and Salesman(base)>>> "  << endl;
+    cout << " <<< Overriding display method of Employee (superbase class)>>> "  << endl;
     cout << "Details of Salesman =>  "     << endl;
     cout << "Employee id : "            << this->get_id() << endl;
     cout << "Employee salary : "        << this->get_sal() << endl;
@@ -27,7 +27,7 @@ void Sales_Manager:: accept(){
     int id;
     float sal, comm, bonus;
     cout << "---------------------------" << endl;
-    cout << " <<< Overriding accept method of Employee (superbase class), Manager(base) and Salesman(base)>>> "  << endl;
+    cout << " <<< Overriding accept method of Employee (superbase class)>>> "  << endl;
     cout << "Please enter details of Salesman =>  "    << endl;
     cout << "Employee id : "            << endl;
     cin >> id;
