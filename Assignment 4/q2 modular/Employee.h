@@ -16,8 +16,8 @@ class Employee{
         void set_id(int);
         float get_sal();
         void set_sal(float);
-        void display();
-        void accept();
+        virtual void display();
+        virtual void accept();
 };
 
 #endif
