@@ -13,6 +13,7 @@ class Sales_Manager : public Salesman, public Manager {
     public:
         Sales_Manager();
         Sales_Manager(int, float, float,float);
+        ~Sales_Manager();
         void display();
         void accept();
 };

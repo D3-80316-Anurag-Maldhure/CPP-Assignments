@@ -21,55 +21,27 @@ void Salesman::set_comm(float comm){
 }
 
 void Salesman:: display(){
-    cout << "---------------------------" << endl;
-    cout << " <<< Overriding display method of Employee (base class) >>> "  << endl;
-    cout << "Details of Salesman =>  "     << endl;
-    cout << "Employee id : "            << this->get_id() << endl;
-    cout << "Employee salary : "        << this->get_sal() << endl;
-    cout << "Salesman comm : "          << this->get_comm() << endl;
-    cout << "---------------------------" << endl;
+    Employee::display();
+    this->display_salesman();
 }
 
 void Salesman:: accept(){
-    int id;
-    float sal, comm;
-    cout << "---------------------------" << endl;
-    cout << " <<< Overriding accept method of Employee (base class) >>> "  << endl;
-    cout << "Please enter details of Salesman =>  "    << endl;
-    cout << "Employee id : "            << endl;
-    cin >> id;
-    set_id(id); 
-    cout << "Employee salary : "        << endl;
-    cin >> sal;
-    set_sal(sal);
-    cout << "Salesman comm : "        << endl;
-    cin >> comm;
-    this->comm = comm;
-    cout << "---------------------------" << endl;
+    Employee::accept();
+    this->accept_salesman();
 }
 
 void Salesman:: display_salesman(){
-    cout << "---------------------------" << endl;
-    cout << "Details of Salesman =>  "     << endl;
-    cout << "Employee id : "            << this->get_id() << endl;
-    cout << "Employee salary : "        << this->get_sal() << endl;
     cout << "Salesman comm : "          << this->get_comm() << endl;
     cout << "---------------------------" << endl;
 }
 void Salesman:: accept_salesman(){
-    int id;
-    float sal, comm;
-    cout << "---------------------------" << endl;
-    cout << "Please enter details of Salesman =>  "    << endl;
-    cout << "Employee id : "            << endl;
-    cin >> id;
-    set_id(id); 
-    cout << "Employee salary : "        << endl;
-    cin >> sal;
-    set_sal(sal);
+    float comm;
     cout << "Salesman comm : "          << endl;
     cin >> comm;
     this->comm = comm;
     cout << "---------------------------" << endl;
+}
+Salesman:: ~Salesman(){
+    cout << "Inside Salesman::Dtor" << endl;
 }
 

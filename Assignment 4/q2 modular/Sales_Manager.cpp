@@ -12,34 +12,18 @@ Sales_Manager::Sales_Manager(int id, float sal, float bonus, float comm){
     this->set_comm(comm);
 }
 
-void Sales_Manager:: display(){
-    cout << "---------------------------" << endl;
-    cout << " <<< Overriding display method of Employee (superbase class)>>> "  << endl;
-    cout << "Details of Salesman =>  "     << endl;
-    cout << "Employee id : "            << this->get_id() << endl;
-    cout << "Employee salary : "        << this->get_sal() << endl;
-    cout << "Manager bonus : "          << this->get_bonus() << endl;
-    cout << "Salesman comm : "          << this->get_comm() << endl;
-    cout << "---------------------------" << endl;
+void Sales_Manager:: accept(){
+    Employee::accept();
+    this->accept_manager();
+    this->accept_salesman();
 }
 
-void Sales_Manager:: accept(){
-    int id;
-    float sal, comm, bonus;
-    cout << "---------------------------" << endl;
-    cout << " <<< Overriding accept method of Employee (superbase class)>>> "  << endl;
-    cout << "Please enter details of Salesman =>  "    << endl;
-    cout << "Employee id : "            << endl;
-    cin >> id;
-    set_id(id); 
-    cout << "Employee salary : "        << endl;
-    cin >> sal;
-    set_sal(sal);
-    cout << "Manager bonus : "        << endl;
-    cin >> bonus;
-    set_bonus(bonus);
-    cout << "Salesman comm : "        << endl;
-    cin >> comm;
-    set_comm(comm);
-    cout << "---------------------------" << endl;
+void Sales_Manager:: display(){
+    Employee::display();
+    this->display_manager();
+    this->display_salesman();
+}
+
+Sales_Manager:: ~Sales_Manager(){
+    cout << "Inside Sales_Manager::Dtor" << endl;
 }

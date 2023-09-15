@@ -85,5 +85,7 @@ int main(){
         time[i].printTime();
     }
 
+    delete [] time;
+
     return 0;
 }

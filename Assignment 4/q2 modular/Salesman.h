@@ -11,15 +11,17 @@ using namespace std;
 class Salesman : virtual public Employee{
     private:
         float comm;
+    protected:
+        void display_salesman();
+        void accept_salesman();
     public:
         Salesman();
         Salesman(int, float, float);
+        ~Salesman();
         float get_comm();
         void set_comm(float);
-        void display();
-        void accept();
-        void display_salesman();
-        void accept_salesman();
+        virtual void display();
+        virtual void accept();
 };
 
 #endif

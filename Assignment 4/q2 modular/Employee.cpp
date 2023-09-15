@@ -38,7 +38,6 @@ void Employee:: display(){
     cout << "Details of Employee => "    << endl;
     cout << "Employee id : "            << this->id << endl;
     cout << "Employee salary : "        << this->sal << endl;
-    cout << "---------------------------" << endl;
 }
 void Employee:: accept(){
     int id;
@@ -48,8 +47,11 @@ void Employee:: accept(){
     cout << "Employee id : "            << endl;
     cin >> id;
     this->id = id; 
-    cout << "Employee salary : "        << endl;
+    cout << "Enter salary : "        << endl;
     cin >> sal;
     this->sal = sal; 
-    cout << "---------------------------" << endl;
+}
+
+Employee:: ~Employee(){
+    cout << "Inside Employee::Dtor" << endl;
 }

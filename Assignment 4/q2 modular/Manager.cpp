@@ -22,54 +22,27 @@ void Manager::set_bonus(float bonus){
 }
 
 void Manager:: display(){
-    cout << "---------------------------" << endl;
-    cout << " <<< Overriding display method of Employee (base class) >>> "  << endl;
-    cout << "Details of Manager =>  "     << endl;
-    cout << "Employee id : "            << this->get_id() << endl;
-    cout << "Employee salary : "        << this->get_sal() << endl;
-    cout << "Manager bonus : "          << this->get_bonus() << endl;
-    cout << "---------------------------" << endl;
+    Employee::display();
+    this->display_manager();
 }
 
 void Manager:: accept(){
-    int id;
-    float sal, bonus;
-    cout << "---------------------------" << endl;
-    cout << " <<< Overriding accept method of Employee (base class) >>> "  << endl;
-    cout << "Please enter details of Manager =>  "    << endl;
-    cout << "Employee id : "            << endl;
-    cin >> id;
-    set_id(id); 
-    cout << "Employee salary : "        << endl;
-    cin >> sal;
-    set_sal(sal);
-    cout << "Manager bonus : "        << endl;
-    cin >> bonus;
-    this->bonus = bonus;
-    cout << "---------------------------" << endl;
+    Employee::accept();
+    this->accept_manager();
 }
 
 void Manager:: display_manager(){
-    cout << "---------------------------" << endl;
-    cout << "Details of Manager => "     << endl;
-    cout << "Employee id : "            << this->get_id() << endl;
-    cout << "Employee salary : "        << this->get_sal() << endl;
     cout << "Manager bonus : "          << this->get_bonus() << endl;
     cout << "---------------------------" << endl;
 }
 void Manager:: accept_manager(){
-    int id;
-    float sal, bonus;
-    cout << "---------------------------" << endl;
-    cout << "Please enter details of Manager =>  "    << endl;
-    cout << "Employee id : "            << endl;
-    cin >> id;
-    set_id(id); 
-    cout << "Employee salary : "        << endl;
-    cin >> sal;
-    set_sal(sal);
+    float bonus;
     cout << "Manager bonus : "        << endl;
     cin >> bonus;
     this->bonus = bonus;
     cout << "---------------------------" << endl;
+}
+
+Manager:: ~Manager(){
+    cout << "Inside Manager::Dtor" << endl;
 }

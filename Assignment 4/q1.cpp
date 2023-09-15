@@ -145,29 +145,31 @@ int main(){
     cout << "Enter the size of the array that you want to create : " << endl;
     cin >> studentArraySize;
 
-    Student *array = new Student[studentArraySize];
+    Student *StudentArray = new Student[studentArraySize];
 
     while((choice = menu()) != 0){
         switch (choice){
             case AcceptData:
                 for(int i=0; i<studentArraySize; i++){
-                    array[i].acceptStudentData();
+                    StudentArray[i].acceptStudentData();
                 }
                 break;
             case PrintData:
                 for(int i=0; i<studentArraySize; i++){
-                    array[i].printStudentData();
+                    StudentArray[i].printStudentData();
                 }
                 break;
             case SortData:
-                sortRecords(array, studentArraySize);
+                sortRecords(StudentArray, studentArraySize);
                 break;
             case SearchRecords:
-                searchRecords(array, studentArraySize);
+                searchRecords(StudentArray, studentArraySize);
                 break;
             default:
                 cout << "Please choose from above choices only" << endl;
         }
     }
+
+    delete [] StudentArray;
     return 0;
 }

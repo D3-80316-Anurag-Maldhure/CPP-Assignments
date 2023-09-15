@@ -12,6 +12,7 @@ class Employee{
     public:
         Employee();
         Employee(int, float);
+        virtual ~Employee();
         int get_id();
         void set_id(int);
         float get_sal();
