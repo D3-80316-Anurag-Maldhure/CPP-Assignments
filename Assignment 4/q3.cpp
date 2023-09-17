@@ -9,7 +9,6 @@
 #include <iostream>
 using namespace std;
 
-//Interface behaviour 
 class Item{
     public:
         int id;
@@ -22,6 +21,7 @@ class Item{
         }
 
         virtual float calculateDiscount(){
+            return 0;
         }
 
         void acceptDetails(){
@@ -115,9 +115,10 @@ int main(){
     int id;
     int discount;
 
-    Book *bookArray = new Book[3];
-    Tape *tapeArray = new Tape[3];
+    Item *bookArray = new Book[3];
+    Item *tapeArray = new Tape[3];
 
+    //accept
     cout << "Enter data for 3 books and 3 tapes : " <<endl;
     for(int i=0; i<3; i++){
         bookArray[i].acceptDetails();
@@ -126,6 +127,7 @@ int main(){
         tapeArray[i].acceptDetails();
     }
 
+    //print 
     cout << "List to choose any 3 items from : "<<endl;
     for(int i=0; i<3; i++){
         bookArray[i].printDetails();
@@ -158,6 +160,8 @@ int main(){
                     }
                     else{
                         for(int i=0; i<3; i++){
+                            cout << "Choose a book from items kist above by entering id" <<endl;
+                            cin >> id;
                             if(tapeArray[i].id==id){
                                 discount = tapeArray[i].calculateDiscount();
                                 cout << "Discount on item : " << discount <<endl;
