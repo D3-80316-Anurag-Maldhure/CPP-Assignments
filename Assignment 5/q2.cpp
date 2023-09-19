@@ -1,156 +1,160 @@
-// Q3. Stack is a Last-In-First-Out data structure. Write a Stack class. 
-// It implements stack using Dynamically allocated array. 
-// Stack size should be passed in parameterized constructor. If size is not given, allocate stack of size 5. 
-// Provide member functions like push(), pop(), peek(), isEmpty(), isFull(), and print().
-
 #include <iostream>
 using namespace std;
 
+enum EStackOperations{
+    Exit,Create5,Create,push,pop,print,peek
+};
 class Stack{
-    private:
-        int stackSize, index;
-        int *array;
-        
-    public:
-        Stack(){
-            cout << "Initialised stack value with default size 5 and index -1 by Parameterless constructor" << endl;
-            this->stackSize = 5;
-            this->index=-1;
-            array = new int[stackSize];
-        }
 
-        Stack(int stackSize){
-            cout << "Initialised stack value with index -1 and user defined size by Parameterised constructor" << endl;
-            this->stackSize = stackSize;
-            this->index=-1;
-            array = new int[stackSize];
-        }
+int currIndex = -1;
 
-        void push(int data){
-            //if index is < stack size allow
-                //increment index
-                //put user value at that index
-                //else, don't allow
-            if(index < stackSize){
-                index++;
-                array[index] = data;
-            }
-            else{
-                cout<<"Stack overflow"<<endl;
-            }
-        }
-        
-        void pop(){
-            //if index is >=0 allow popping and decrement index
-            //else stackunderflow
-            if (index >= 0){
-                array[index] = 0;
-                index--;
-            }
-            else{
-                cout << "Stack underflow" <<endl;
-            }
-        }
-        
-        int peek(){
-            return array[index];
-        }
+private:
+    int size=5;
+    int *arr;
+public:
 
-        bool isEmpty(){
-            if(index==-1){
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
+    Stack(){
+        arr = new int[this->size];
+    }
+    Stack(int size){
+        this->size=size;
+        arr = new int[size];
+    }
 
-        bool isFull(){
-            if(index == stackSize){
-                return true;
-            }
-            else{
-                return false;
-            }
-        } 
-        
-        void print(){
-            cout << "_______________" << endl;
-            cout << "The stack is as follows : " << endl;
-            for(int i=index; i>=0; i--){
-                cout << array[i] << endl;
-            }
+    bool isEmpty(){
+        return currIndex==-1;
+    }
+
+    bool isFull(){
+        return currIndex==size-1;
+    }
+
+    void push(int data){
+        if(this->isFull()){
+            cout<<"The stack is full..."<<endl;
+            return;
         }
+        currIndex++;
+        arr[currIndex] = data;
+    }
+
+    int pop(){
+        if(isEmpty()==true){
+            cout<<"Stack is empty. There is nothing to be popped out."<<endl;
+            return 0;
+        }
+        return arr[currIndex--];
+    }
+
+    int peek(){
+        return arr[currIndex];
+    }
+
+    void print(){
+        for(int i=currIndex; i>=0; i--){
+            cout<<arr[i]<<endl;
+        }
+    }
+
+    Stack operator=(Stack &other){
+        int *arr = new int[other.size];
+        for(int i=0; i<this->size; i++){
+            this->arr[i] = other.arr[i];
+        }
+    }
 };
 
-//Menu function
-int menu(){
+EStackOperations menu(){
+
     int choice;
-    cout << "__________________________________________________________________________" << endl;
-    cout << "Please select the stack operation you want to perform from options below: " << endl;
-    cout<< "0. EXIT \n1. push \n2. pop \n3. peek \n4. isEmpty \n5. isFull \n6. print"<<endl;
+    cout<<"0: Exit"<<endl;
+    cout<<"1 :Create a stack of size 5"<<endl;
+    cout<<"2 :Create a stack of size n"<<endl;
+    cout<<"3 :Push data"<<endl;
+    cout<<"4 :Pop data"<<endl;
+    cout<<"5: print the stack"<<endl;
+    cout<<"6: Get top element of the stack"<<endl;
+    cout<<"Enter your choice =";
     cin>>choice;
-    return choice;
+    return EStackOperations(choice);
 }
 
-//Main function (Menu driven)
 int main(){
-    int choice = 0;
-    char yesOrNo;
-    int stackSize = 0;
-    int data;
-    Stack *stackPtr;
 
-    cout << "Do you want to define stack size or take default size ? (y/n)" <<endl;
-    cin >> yesOrNo;
-    if(yesOrNo == 'y' || yesOrNo == 'Y'){
-        cout << "Enter the size of the stack" << endl;
-        cin >> stackSize;
-        *stackPtr = Stack(stackSize);
-    }
-    else{
-        *stackPtr = Stack();
-    }
+    EStackOperations choice;
 
-    while((choice = menu()) != 0){
-        switch (choice){
-            case 1:
-                cout << "Enter the integer value that you want to push : " <<endl;          
-                cin >> data;
-                stackPtr->push(data);
+    bool flag=false;
+    Stack *stk;
+    while((choice=menu())!=Exit){
+        switch(choice){
+            case Create5:
+                stk = new Stack(5);
+                flag=true;
+                cout<<"----------------"<<endl;
+                cout<<"a stack of size 5 is created successfully."<<endl;
+                cout<<"----------------"<<endl;
                 break;
-
-            case 2:
-                stackPtr->pop();
+            case Create:
+                int size;
+                cout<<"Enter the size =";
+                cin>>size;
+                flag=true;
+                stk = new Stack(size);
+                cout<<"----------------"<<endl;
+                cout<<"a stack of size"<< size <<" is created successfully."<<endl;
+                cout<<"----------------"<<endl;
                 break;
-
-            case 3:
-                data = stackPtr->peek();
-                cout << "The topmost value in the stack is = " << data << endl;
-                break;
-
-            case 4: 
-                if(stackPtr->isEmpty()){
-                    cout << "The stack is empty" << endl;
+            case push:
+                if(flag!=true){
+                    cout<<"Create a stack before pushing data."<<endl;
                 }
                 else{
-                    cout << "The stack is not empty" <<endl;
+                    int data;
+                    cout<<"Enter the data =";
+                    cin>>data;
+                    stk->push(data);
                 }
                 break;
-
-            case 5:
-                if(stackPtr->isFull()){
-                    cout << "The stack is full" << endl;
+            case pop:
+                if(flag!=true){
+                    cout<<"Create a stack before popping data."<<endl;
                 }
                 else{
-                    cout << "the stack is not full" << endl;
+                    cout<<"----------------"<<endl;
+                    cout<<"popped item is ="<<stk->pop()<<endl;
+                    cout<<"----------------"<<endl;
+
                 }
                 break;
-
-            case 6:
-                stackPtr->print();
+            case print:
+                if(flag!=true){
+                    cout<<"Create a stack before printing data."<<endl;
+                }
+                else{
+                    cout<<"----------------"<<endl;
+                    stk->print();
+                    cout<<"----------------"<<endl;
+                }
+                break;
+            case peek:
+                if(flag!=true){
+                    cout<<"Create a stack before printing data."<<endl;
+                }
+                else{
+                    cout<<"----------------"<<endl;
+                    cout<<"Top ="<<stk->peek()<<endl;
+                    cout<<"----------------"<<endl;
+                }
+                break;
+            default:
+                cout<<"Enter a valid choice.";
                 break;
         }
     }
+    Stack *stk1;
+    stk1 = stk;
+    stk1->pop();
+    stk->print();
+
     return 0;
 }
