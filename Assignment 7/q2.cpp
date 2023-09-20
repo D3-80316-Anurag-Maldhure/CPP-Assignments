@@ -5,10 +5,22 @@
 #include <iostream>
 using namespace std;
 
+// Function to return gcd of a and b
+int gcd(int a, int b){
+    int result = min(a, b);
+    while (result > 0) {
+        if (a % result == 0 && b % result == 0) {
+            break;
+        }
+        result--;
+    }
+    return result;
+}
+
 class Fraction{
     private:
-        double numerator;
-        double denominator;
+        int numerator;
+        int denominator;
 
     public:
         Fraction(){
@@ -40,7 +52,7 @@ class Fraction{
         }
 
         double decimalValue(){
-            return this->numerator/this->denominator;
+            return (double)this->numerator/(double)this->denominator;
         }
 
         Fraction operator+(Fraction &f2){
@@ -71,10 +83,11 @@ class Fraction{
             return result;
         }
 
-        Fraction operator=(Fraction &f2){ 
+        void operator=(Fraction &f2){ 
             this->numerator = f2.numerator;
             this->denominator = f2.denominator;
         }
+
         bool operator==(Fraction &f2){
             if((this->numerator == f2.numerator) && (this->denominator == f2.denominator))
                 return true;
@@ -88,13 +101,13 @@ class Fraction{
                 return false;
         }
         bool operator<(Fraction &f2){ //********************
-            if()
+            if(this->decimalValue() < f2.decimalValue())
                 return true;
             else
                 return false;
         }
-        Fraction operator>(Fraction &f2){ //********************
-            if()
+        bool operator>(Fraction &f2){ //********************
+            if(this->decimalValue() > f2.decimalValue())
                 return true;
             else
                 return false;
@@ -102,23 +115,71 @@ class Fraction{
 
 };
 
-// Function to return gcd of a and b
-int gcd(int a, int b){
-    int result = min(a, b);
-    while (result > 0) {
-        if (a % result == 0 && b % result == 0) {
-            break;
-        }
-        result--;
-    }
-    return result;
-}
+
 
 
 
 int main(){
+    double num,den;
+
+    Fraction frac1(30,60);
+    Fraction frac2(40,360);
+
+    cout << "Lowest form of Fraction 1 : " << frac1.getNumerator() << "/" << frac1.getDenominator() << " is = "<< frac1.lowestForm().getNumerator() << "/" << frac1.lowestForm().getDenominator() << endl;
+    cout << "Lowest form of Fraction 2 : " << frac2.getNumerator() << "/" << frac2.getDenominator() << " is = "<< frac2.lowestForm().getNumerator() << "/" << frac2.lowestForm().getDenominator() << endl;
+
+
+    cout << "Lowest form of Fraction 1 : " << frac1.getNumerator() << "/" << frac1.getDenominator() << " is = "<< frac1.decimalValue() << endl;
+    cout << "Lowest form of Fraction 2 : " << frac2.getNumerator() << "/" << frac2.getDenominator() << " is = "<< frac2.decimalValue() << endl;
+
+    // +, -, *, /, =, ==, !=, <, >
+
+    cout << "Addition " << (frac1 + frac2).getNumerator() << "/" << (frac1 + frac2).getDenominator() << endl;
+    cout << "Subtraction " << (frac1 - frac2).getNumerator() << "/" << (frac1 - frac2).getDenominator() << endl;
+    cout << "Multiplication " << (frac1 * frac2).getNumerator() << "/" << (frac1 * frac2).getDenominator() << endl;
+    cout << "Division " << (frac1 / frac2).getNumerator() << "/" << (frac1 / frac2).getDenominator() << endl;
+
+    Fraction frac3 = frac1;
+    cout << "Decimal value of fraction 1 : " << frac1.decimalValue() << endl;
+    cout << "Decimal value of fraction 2 : " << frac2.decimalValue() << endl;
     
-    
+    if(frac1==frac3){
+        cout << "Fraction 1 and 3 are sam e" << endl;
+    }
+    else{
+        cout << "Fraction 1 and 3 are NOT same" << endl;
+    }
+
+    if(frac1==frac2){
+        cout << "Fraction 1 and 3 are sam e" << endl;
+    }
+    else{
+        cout << "Fraction 1 and 2 are NOT same" << endl;
+    }
+
+    if(frac1!=frac2){
+        cout << "Fraction 1 != 2 " << endl;
+    }
+    else{
+        cout << "Fraction 1 == 2"  << endl;
+    }
+
+    if(frac1<frac2){
+        cout << "Fraction 1 < 2 " << endl;
+    }
+    else{
+        cout << "Fraction 1 > 2"  << endl;
+    }
+
+    if(frac1>frac2){
+        cout << "Fraction 1 > 2 " << endl;
+    }
+    else{
+        cout << "Fraction 1 < 2"  << endl;
+    }
+
+
+
     return 0;
 }
 
